@@ -1,0 +1,37 @@
+#Just Mini Game For Fun, Nothing Great:)
+
+import random
+import time
+
+Title = ["Queen","King","Dog","Pig","Horse","Wiser","Good man/woman","Honest","Intelligent","Pro","Bad man/woman","Donkey","Monkey","Cat","Swine","Tadpole","Chimpanzi","Ghost","Witch","Lizard"
+                ,"Black Pig"]
+i = True
+while(i == True):
+    Title1 = random.choice(Title)
+    Title2 = random.choice(Title)
+    j = True
+    while j == True:
+        if Title1 == Title2:
+            Title1 = random.choice(Title)
+            Title2 = random.choice(Title)
+        else:
+            j = False
+    print("\nFor Exit press 0.")
+    print("1. yellow\n2. green\n3. pink\n4. blue")
+    select = input("Choose your color: ")
+    if select == '0':
+        break
+    print("1   2\n5   6")
+    input1 = int(input("choose Your Number: "))
+    if input1 == 1 or input1 == 2 or input1 == 5 or  input1 == 6:
+        print("3   4\n7   8")
+        input2 = int(input("choose Your Number: "))
+        if input2 == 3 or input2 == 4 or input2 == 7 or input2 == 8:
+            print(f"for {input1}, You are a {Title1} and for {input2}, You are a {Title2}")
+            time.sleep(4)
+        else:
+            print("Please input correct Number!! \nNow Restarting the Game.........")
+            time.sleep(2)
+    else:
+        print("Please input correct Number!! \nNow Restarting the Game.........")
+        time.sleep(2)
