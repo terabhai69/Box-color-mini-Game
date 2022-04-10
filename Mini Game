@@ -1,10 +1,13 @@
 #Just Mini Game For Fun, Nothing Great:)
 
 import random
+import os
 import time
 
 Title = ["Queen","King","Dog","Pig","Horse","Wiser","Good man/woman","Honest","Intelligent","Pro","Bad man/woman","Donkey","Monkey","Cat","Swine","Tadpole","Chimpanzi","Ghost","Witch","Lizard"
                 ,"Black Pig"]
+F = open("mini game", 'w')    #for removing content from file at starting of the program
+F.close()
 i = True
 while(i == True):
     Title1 = random.choice(Title)
@@ -16,22 +19,48 @@ while(i == True):
             Title2 = random.choice(Title)
         else:
             j = False
-    print("\nFor Exit press 0.")
+    print("If you want to see records then press 'R'.")
+    print("For Exit Press 0.")
     print("1. yellow\n2. green\n3. pink\n4. blue")
     select = input("Choose your color: ")
     if select == '0':
         break
+    if select == 'R':
+        ff = open("mini game", 'r')
+        lines = ff.readlines()
+        count = 0
+        if os.stat("mini game").st_size == 0:
+            print("File is Empty:)")
+        for line in lines:
+            count += 1
+            print("{}. {}".format(count, line.strip()))
+        ff.close()
+        print()
+        continue
     print("1   2\n5   6")
+    inputlist1 = [1,2,5,6]
     input1 = int(input("choose Your Number: "))
-    if input1 == 1 or input1 == 2 or input1 == 5 or  input1 == 6:
-        print("3   4\n7   8")
-        input2 = int(input("choose Your Number: "))
-        if input2 == 3 or input2 == 4 or input2 == 7 or input2 == 8:
-            print(f"for {input1}, You are a {Title1} and for {input2}, You are a {Title2}")
-            time.sleep(4)
+    k = True
+    while k == True:
+        if input1 not in inputlist1:
+            print("Please choose correct number:)")
+            time.sleep(1)
+            input1 = int(input("choose Your Number: "))
         else:
-            print("Please input correct Number!! \nNow Restarting the Game.........")
-            time.sleep(2)
-    else:
-        print("Please input correct Number!! \nNow Restarting the Game.........")
-        time.sleep(2)
+            k = False
+    print("3   4\n7   8")
+    inputlist2 = [3,4,7,8]
+    input2 = int(input("choose Your Number: "))
+    k = True
+    while k == True:
+        if input2 not in inputlist2:
+            print("Please choose corret number:)")
+            time.sleep(1)
+            input2 = int(input("choose Your Number: "))
+        else:
+            k = False
+    print(f"For {input1}, You are a {Title1} and,\nFor {input2}, You are a {Title2}\n")
+    time.sleep(3)
+    F = open("mini game", 'a')
+    F.write(f"For {input1}, You was a {Title1} and For {input2}, You was a {Title2}\n")
+    F.close()
